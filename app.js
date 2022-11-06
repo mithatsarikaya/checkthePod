@@ -3,7 +3,11 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const Pods = require('./models/pods')
 
+const bodyParser = require('body-parser');
+
+
 const app = express()
+app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true}))
@@ -45,5 +49,14 @@ app.post('/addPod', (req,res)=>{
         .then(console.log(pod))
     res.redirect('/')
 
+})
+
+
+app.post('/pod/update/:id', (req,res)=>{
+    const id = req.params.id
+    Pods.findByIdAndUpdate(id, req.body)
+    .then((result)=>{
+        res.json({link:'/'})
+    })
 })
 

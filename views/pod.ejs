@@ -37,7 +37,9 @@
         </table>
 
         <button class="calculatePageBtn" id="calculateBtn">Hesapla</button>
-        <button class="calculatePageBtn" id="saveBtn">Kaydet</button>
+        <button class="calculatePageBtn" id="saveBtn" data-doc="<%=pod._id%>">
+          Kaydet
+        </button>
       </div>
     </section>
 
@@ -52,7 +54,7 @@
           "#requestedRawAmount"
         ).value;
 
-        let finalResult =
+        const finalResult =
           podTotalWeight -
           ((podTotalWeight - podFreeWeight) / productRawAmount) *
             requestedRawAmount;
@@ -60,8 +62,40 @@
         document.querySelector("#result").innerHTML = finalResult;
       });
 
-      const saveBtn = document.querySelector("#calculateBtn");
-      saveBtn.addEventListener("click", (e) => {});
+      const saveBtn = document.querySelector("#saveBtn");
+      saveBtn.addEventListener("click", (e) => {
+        const endpoint = `/pod/update/${saveBtn.dataset.doc}`;
+
+        const requestedRawAmount = document.querySelector(
+          "#requestedRawAmount"
+        ).value;
+
+        const finalResult =
+          podTotalWeight -
+          ((podTotalWeight - podFreeWeight) / productRawAmount) *
+            requestedRawAmount;
+
+        let data = {
+          productRawAmount: productRawAmount - requestedRawAmount,
+          podTotalWeight: finalResult,
+        };
+
+        console.log(finalResult);
+        console.log(data.productRawAmount, data.podFreeWeight);
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => (window.location.href = data.link))
+          .catch((err) => {
+            console.log(err);
+          });
+      });
     </script>
   </body>
 </html>
