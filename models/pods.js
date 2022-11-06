@@ -16,18 +16,18 @@ const podSchema = new Schema({
         },
     productRawAmount: {
         type: Number,
-        },
-    productRawAmountRequested: {
-        type: Number
-    },
-    numberOnTheWeighing:{
-        type: Number,
-        default: function() {
-            return (this.podFreeWeight && this.podTotalWeight && this.productRawAmount && this.productRawAmountRequested) ? 
-            this.podTotalWeight - ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested)
-            : 0
         }
-    }
+    // productRawAmountRequested: {
+    //     type: Number
+    // }
+    // numberOnTheWeighing:{
+    //     type: Number,
+    //     default: function() {
+    //         return (this.podFreeWeight && this.podTotalWeight && this.productRawAmount && this.productRawAmountRequested) ? 
+    //         this.podTotalWeight - ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested)
+    //         : 0
+    //     }
+    // }
     
 
 })

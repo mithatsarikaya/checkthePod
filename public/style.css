@@ -71,3 +71,28 @@ input{
 .required {
     background-color: lightcoral;
 }
+
+/* .lightOnHover:hover {
+    background-color: lightcoral;
+    
+} */
+
+tr:hover td {
+    background-color: lightcoral;
+    cursor:pointer;
+}
+
+.full{
+    width: 100%;
+    height: 100%;
+}
+
+.calculatePageBtn {
+    width: 100%;
+    height: 20%;
+}
+
+.calculatePageBtn:hover{
+    background-color: lightcoral;
+    cursor: pointer;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('./inc/head')%>
+  </head>
+  <body>
+    <%-include('./inc/nav')%>
+
+    <section>
+      <div id="thing">
+        <table>
+          <tr>
+            <th>Kap Adı</th>
+            <th>Dara(gr)</th>
+            <th>Toplam</th>
+            <th>Ürün(raw)</th>
+            <th>İstenen Miktar</th>
+            <th>Tartıda Yazacak</th>
+            <!-- <th>İstenen Miktar(raw)</th>
+            <th>Tartıda Yazacak</th> -->
+          </tr>
+          <tr class="lightOnHover">
+            <td><%=pod.podName%></td>
+            <td><%=pod.podFreeWeight%></td>
+            <td><%=pod.podTotalWeight%></td>
+            <td><%=pod.productRawAmount%></td>
+            <td>
+              <input
+                class="full"
+                autofocus
+                type="number"
+                id="requestedRawAmount"
+              />
+            </td>
+            <td>
+              <label for=""></label>
+            </td>
+            <!-- <td></td>
+            <td></td> -->
+          </tr>
+        </table>
+        <button class="calculatePageBtn" id="calculateBtn">Hesapla</button>
+        <button class="calculatePageBtn">Azalt</button>
+      </div>
+    </section>
+    <script>
+      const requestedRawAmount = document.querySelector("#requestedRawAmount")
+
+      const calculateBtn = document.querySelector("#calculateBtn");
+      calculateBtn.addEventListener("click", (e) => {
+        console.log(requestedRawAmount.id);
+        console.log(<%=pod.podTotalWeight%>);
+      });
+    </script>
+  </body>
+</html>
+
+<!-- this.podTotalWeight - -->
+<!-- ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested) -->
+
+<!-- <%= pod.podTotalWeight -
+                ((pod.podTotalWeight-pod.podFreeWeight)/pod.productRawAmount*pod.productRawAmountRequested)%> -->

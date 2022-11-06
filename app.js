@@ -21,10 +21,21 @@ app.get('/', (req,res)=>{
     
 })
 
+app.get('/pod/:id', (req,res)=>{
+    const id = req.params.id
+    Pods.findById(id)
+    .then((result)=>{
+        res.render('pod', {header:'Pod Detay', pod:result})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+
+})
+
 
 app.get('/addPod', (req,res)=>{
     res.render('addPod', {header: 'Kap Ekle'})
-    
 })
 
 

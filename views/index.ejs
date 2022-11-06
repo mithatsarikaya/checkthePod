@@ -18,7 +18,10 @@
             <th>Tartıda Yazacak</th> -->
           </tr>
           <% pods.forEach(pod => { %>
-          <tr>
+          <tr
+            class="lightOnHover"
+            onclick="window.location='/pod/<%=pod._id%>';"
+          >
             <td><%=pod.podName%></td>
             <td><%=pod.podFreeWeight%></td>
             <td><%=pod.podTotalWeight%></td>
