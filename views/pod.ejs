@@ -16,8 +16,6 @@
             <th>Ürün(raw)</th>
             <th>İstenen Miktar</th>
             <th>Tartıda Yazacak</th>
-            <!-- <th>İstenen Miktar(raw)</th>
-            <th>Tartıda Yazacak</th> -->
           </tr>
           <tr class="lightOnHover">
             <td><%=pod.podName%></td>
@@ -33,30 +31,37 @@
               />
             </td>
             <td>
-              <label for=""></label>
+              <label id="result" for=""> </label>
             </td>
-            <!-- <td></td>
-            <td></td> -->
           </tr>
         </table>
+
         <button class="calculatePageBtn" id="calculateBtn">Hesapla</button>
-        <button class="calculatePageBtn">Azalt</button>
+        <button class="calculatePageBtn" id="saveBtn">Kaydet</button>
       </div>
     </section>
+
     <script>
-      const requestedRawAmount = document.querySelector("#requestedRawAmount")
+      const podFreeWeight = parseInt("<%=pod.podFreeWeight%>");
+      const podTotalWeight = parseInt("<%=pod.podTotalWeight%>");
+      const productRawAmount = parseInt("<%=pod.productRawAmount%>");
 
       const calculateBtn = document.querySelector("#calculateBtn");
       calculateBtn.addEventListener("click", (e) => {
-        console.log(requestedRawAmount.id);
-        console.log(<%=pod.podTotalWeight%>);
+        const requestedRawAmount = document.querySelector(
+          "#requestedRawAmount"
+        ).value;
+
+        let finalResult =
+          podTotalWeight -
+          ((podTotalWeight - podFreeWeight) / productRawAmount) *
+            requestedRawAmount;
+
+        document.querySelector("#result").innerHTML = finalResult;
       });
+
+      const saveBtn = document.querySelector("#calculateBtn");
+      saveBtn.addEventListener("click", (e) => {});
     </script>
   </body>
 </html>
-
-<!-- this.podTotalWeight - -->
-<!-- ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested) -->
-
-<!-- <%= pod.podTotalWeight -
-                ((pod.podTotalWeight-pod.podFreeWeight)/pod.productRawAmount*pod.productRawAmountRequested)%> -->
