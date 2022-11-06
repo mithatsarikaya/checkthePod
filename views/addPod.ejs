@@ -9,22 +9,32 @@
     <section>
       <div id="thing">
         <form action="" method="post">
-          <input type="text" name="podName" placeholder="podName" />
-          <input type="text" name="podFreeWeight" placeholder="podFreeWeight" />
           <input
+            class="required"
             type="text"
+            name="podName"
+            placeholder="Kap Adı Giriniz"
+          />
+          <input
+            class="required"
+            type="number"
+            name="podFreeWeight"
+            placeholder="Kap Darası Giriniz"
+          />
+          <input
+            type="number"
             name="podTotalWeight"
-            placeholder="podTotalWeight"
+            placeholder="Kap Total Ağırlık Giriniz"
           />
           <input
-            type="text"
+            type="number"
             name="productRawAmount"
-            placeholder="productRawAmount"
+            placeholder="Ham Ürün Miktarı Giriniz"
           />
           <input
-            type="text"
+            type="number"
             name="productRawAmountRequested"
-            placeholder="productRawAmountRequested"
+            placeholder="Ham İstenilen Ürün Miktarı Giriniz"
           />
           <input type="submit" value="Gonder" />
         </form>

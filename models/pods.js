@@ -10,11 +10,12 @@ const podSchema = new Schema({
     podFreeWeight: {
         type: Number
         },
+        
     podTotalWeight: {
         type: Number
         },
     productRawAmount: {
-        type: Number
+        type: Number,
         },
     productRawAmountRequested: {
         type: Number
@@ -22,9 +23,12 @@ const podSchema = new Schema({
     numberOnTheWeighing:{
         type: Number,
         default: function() {
-            return this.podTotalWeight - ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested)
+            return (this.podFreeWeight && this.podTotalWeight && this.productRawAmount && this.productRawAmountRequested) ? 
+            this.podTotalWeight - ((this.podTotalWeight-this.podFreeWeight)/this.productRawAmount*this.productRawAmountRequested)
+            : 0
         }
     }
+    
 
 })
 

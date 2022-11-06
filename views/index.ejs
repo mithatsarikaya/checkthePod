@@ -10,30 +10,31 @@
       <div id="thing">
         <table>
           <tr>
-            <th>Kap No</th>
+            <th>Kap Adı</th>
             <th>Dara(gr)</th>
             <th>Toplam</th>
             <th>Ürün(raw)</th>
-            <th>İstenen Miktar(raw)</th>
-            <th>Tartıda Yazacak</th>
+            <!-- <th>İstenen Miktar(raw)</th>
+            <th>Tartıda Yazacak</th> -->
           </tr>
+          <% pods.forEach(pod => { %>
           <tr>
-            <td>1</td>
-            <td>205</td>
-            <td>1205</td>
-            <td>300</td>
-            <td>50</td>
-            <td>-</td>
+            <td><%=pod.podName%></td>
+            <td><%=pod.podFreeWeight%></td>
+            <td><%=pod.podTotalWeight%></td>
+            <td><%=pod.productRawAmount%></td>
+            <!-- <td></td>
+            <td></td> -->
           </tr>
-
-          <tr>
+          <% }) %>
+          <!-- <tr>
             <td>2</td>
             <td>136</td>
             <td>756</td>
             <td>400</td>
             <td>50</td>
             <td>-</td>
-          </tr>
+          </tr> -->
         </table>
       </div>
     </section>

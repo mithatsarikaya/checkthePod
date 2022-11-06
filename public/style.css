@@ -34,7 +34,7 @@ ul li {
     border-radius: 5px;
 }
 
-ul li:hover{
+ul li:hover, a:hover{
     cursor: pointer;
     background-color: white;
 }
@@ -66,4 +66,8 @@ form {
 
 input{
     display: block;
+}
+
+.required {
+    background-color: lightcoral;
 }

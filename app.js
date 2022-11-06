@@ -14,7 +14,11 @@ mongoose.connect(process.env.DB_URL, ()=>{
 
 
 app.get('/', (req,res)=>{
-    res.render('index', {header: 'Ana Sayfa'})
+    const pods = Pods.find()
+    .then((result)=>{
+        res.render('index', {header: 'Ana Sayfa', pods: result})
+    })
+    
 })
 
 
@@ -24,10 +28,11 @@ app.get('/addPod', (req,res)=>{
 })
 
 
-
 app.post('/addPod', (req,res)=>{
     const pod = new Pods(req.body)
     pod.save()
         .then(console.log(pod))
+    res.redirect('/')
+
 })
 
