@@ -5,11 +5,13 @@ const Schema = require('mongoose').Schema
 const podSchema = new Schema({
     podName:{
         type: String,
-        require: true
+        required: true
     },
     podFreeWeight: {
-        type: Number
-        },
+        type: Number,
+        required: true,
+        min: 0
+    },
         
     podTotalWeight: {
         type: Number
@@ -30,7 +32,7 @@ const podSchema = new Schema({
     // }
     
 
-})
+}, {timestamps:true})
 
 
 const Pods = mongoose.model('pods', podSchema)

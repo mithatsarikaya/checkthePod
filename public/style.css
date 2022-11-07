@@ -42,7 +42,7 @@ ul li:hover, a:hover{
 
 #thing{
     /* background-color: aqua; */
-    width: 60%;
+    width: 80%;
     height: 400px;
     margin: 0 auto;
     
@@ -50,7 +50,7 @@ ul li:hover, a:hover{
 
 table {
     width: 100%;
-    height: 80%;
+    height: 100%;
     margin: auto auto;
     text-align: center;
 }
@@ -79,7 +79,6 @@ input{
 
 tr:hover td {
     background-color: lightcoral;
-    cursor:pointer;
 }
 
 .full{
@@ -94,5 +93,16 @@ tr:hover td {
 
 .calculatePageBtn:hover{
     background-color: lightcoral;
+    cursor: pointer;
+}
+
+.btnAddAndTake{
+    background-color: gray;
+    height: 100%;
+    width: 45%;
+}
+
+.btnAddAndTake:hover{
+    border: solid black 3px;
     cursor: pointer;
 }

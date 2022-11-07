@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('./inc/head')%>
+  </head>
+  <body>
+    <%-include('./inc/nav')%>
+
+    <section>
+      <div id="thing">
+        <table>
+          <tr>
+            <th>Kap Adı</th>
+            <th>Dara(gr)</th>
+            <th>Toplam</th>
+            <th>Ürün(raw)</th>
+          </tr>
+          <tr class="lightOnHover">
+            <td><%=pod.podName%></td>
+            <td><%=pod.podFreeWeight%></td>
+            <td>
+              <input class="full" autofocus type="number" id="totalWeight" />
+            </td>
+            <td>
+              <input class="full" autofocus type="number" id="rawWeight" />
+            </td>
+          </tr>
+        </table>
+
+        <button
+          class="calculatePageBtn"
+          id="putBtnTake"
+          data-doc="<%=pod._id%>"
+        >
+          Ürün Ekle
+        </button>
+      </div>
+    </section>
+
+    <script>
+      const podFreeWeight = parseInt("<%=pod.podFreeWeight%>");
+
+      const putBtnTake = document.querySelector("#putBtnTake");
+      putBtnTake.addEventListener("click", (e) => {
+        const endpoint = `/pod/update/${putBtnTake.dataset.doc}`;
+
+        const podTotalWeight = parseInt("<%=pod.podTotalWeight%>");
+        const productRawAmount = parseInt("<%=pod.productRawAmount%>");
+
+        const totalWeight = podTotalWeight
+          ? parseInt(document.querySelector("#totalWeight").value) +
+            parseInt(podTotalWeight)
+          : parseInt(document.querySelector("#totalWeight").value);
+
+        const newProductRawAmount = productRawAmount
+          ? parseInt(document.querySelector("#rawWeight").value) +
+            parseInt(productRawAmount)
+          : parseInt(document.querySelector("#rawWeight").value);
+
+        let data = {
+          productRawAmount: newProductRawAmount,
+          podTotalWeight: totalWeight,
+        };
+
+        console.log(data);
+        console.log(data.productRawAmount, data.podFreeWeight);
+
+        fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((data) => (window.location.href = data.link))
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+  </body>
+</html>

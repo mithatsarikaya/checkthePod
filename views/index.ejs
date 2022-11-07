@@ -14,30 +14,35 @@
             <th>Dara(gr)</th>
             <th>Toplam</th>
             <th>Ürün(raw)</th>
+            <th>İşlem</th>
             <!-- <th>İstenen Miktar(raw)</th>
             <th>Tartıda Yazacak</th> -->
           </tr>
           <% pods.forEach(pod => { %>
-          <tr
-            class="lightOnHover"
-            onclick="window.location='/pod/<%=pod._id%>';"
-          >
+          <tr class="lightOnHover">
             <td><%=pod.podName%></td>
             <td><%=pod.podFreeWeight%></td>
             <td><%=pod.podTotalWeight%></td>
             <td><%=pod.productRawAmount%></td>
-            <!-- <td></td>
-            <td></td> -->
+            <td>
+              <button
+                onclick="window.location='/podTake/<%=pod._id%>';"
+                class="btnAddAndTake"
+                id="btnTake"
+              >
+                Al
+              </button>
+              <button
+                onclick="window.location='/podPut/<%=pod._id%>';"
+                class="btnAddAndTake"
+                id="btnAdd"
+              >
+                Ekle
+              </button>
+            </td>
           </tr>
+
           <% }) %>
-          <!-- <tr>
-            <td>2</td>
-            <td>136</td>
-            <td>756</td>
-            <td>400</td>
-            <td>50</td>
-            <td>-</td>
-          </tr> -->
         </table>
       </div>
     </section>

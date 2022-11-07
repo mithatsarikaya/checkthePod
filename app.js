@@ -17,19 +17,41 @@ mongoose.connect(process.env.DB_URL, ()=>{
 })
 
 
-app.get('/', (req,res)=>{
+/* app.get('/', (req,res)=>{
     const pods = Pods.find()
     .then((result)=>{
         res.render('index', {header: 'Ana Sayfa', pods: result})
     })
     
+}) */
+
+app.get('/', async (req,res)=>{
+    const pods = await Pods.find()
+    console.log(pods.length);
+    pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
+    : res.redirect('addPod')
+    
+    
 })
 
-app.get('/pod/:id', (req,res)=>{
+app.get('/podTake/:id', (req,res)=>{
     const id = req.params.id
     Pods.findById(id)
     .then((result)=>{
-        res.render('pod', {header:'Pod Detay', pod:result})
+        res.render('podTake', {header:'Pod Detay', pod:result})
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+
+})
+
+
+app.get('/podPut/:id', (req,res)=>{
+    const id = req.params.id
+    Pods.findById(id)
+    .then((result)=>{
+        res.render('podPut', {header:'Pod Detay', pod:result})
     })
     .catch((err)=>{
         console.log(err);
@@ -45,15 +67,23 @@ app.get('/addPod', (req,res)=>{
 
 app.post('/addPod', (req,res)=>{
     const pod = new Pods(req.body)
+
+    if (pod.podTotalWeight < pod.podFreeWeight || pod.podTotalWeight === null)
+    {
+        pod.podTotalWeight = pod.podFreeWeight
+    }
     pod.save()
         .then(console.log(pod))
+        .catch((err)=>{console.log(err)})
     res.redirect('/')
 
 })
 
 
+
 app.post('/pod/update/:id', (req,res)=>{
     const id = req.params.id
+    console.log(req.body);
     Pods.findByIdAndUpdate(id, req.body)
     .then((result)=>{
         res.json({link:'/'})

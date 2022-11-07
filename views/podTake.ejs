@@ -37,8 +37,12 @@
         </table>
 
         <button class="calculatePageBtn" id="calculateBtn">Hesapla</button>
-        <button class="calculatePageBtn" id="saveBtn" data-doc="<%=pod._id%>">
-          Kaydet
+        <button
+          class="calculatePageBtn"
+          id="saveBtnTake"
+          data-doc="<%=pod._id%>"
+        >
+          Ürün Al
         </button>
       </div>
     </section>
@@ -62,9 +66,9 @@
         document.querySelector("#result").innerHTML = finalResult;
       });
 
-      const saveBtn = document.querySelector("#saveBtn");
-      saveBtn.addEventListener("click", (e) => {
-        const endpoint = `/pod/update/${saveBtn.dataset.doc}`;
+      const saveBtnTake = document.querySelector("#saveBtnTake");
+      saveBtnTake.addEventListener("click", (e) => {
+        const endpoint = `/pod/update/${saveBtnTake.dataset.doc}`;
 
         const requestedRawAmount = document.querySelector(
           "#requestedRawAmount"
