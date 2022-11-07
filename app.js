@@ -17,17 +17,9 @@ mongoose.connect(process.env.DB_URL, ()=>{
 })
 
 
-/* app.get('/', (req,res)=>{
-    const pods = Pods.find()
-    .then((result)=>{
-        res.render('index', {header: 'Ana Sayfa', pods: result})
-    })
-    
-}) */
 
 app.get('/', async (req,res)=>{
-    const pods = await Pods.find()
-    console.log(pods.length);
+    const pods = await Pods.find().sort({updatedAt:-1})
     pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
     : res.redirect('addPod')
     
@@ -73,9 +65,9 @@ app.post('/addPod', (req,res)=>{
         pod.podTotalWeight = pod.podFreeWeight
     }
     pod.save()
-        .then(console.log(pod))
+        .then(res.redirect('/'))
         .catch((err)=>{console.log(err)})
-    res.redirect('/')
+    
 
 })
 
@@ -83,7 +75,9 @@ app.post('/addPod', (req,res)=>{
 
 app.post('/pod/update/:id', (req,res)=>{
     const id = req.params.id
+
     console.log(req.body);
+
     Pods.findByIdAndUpdate(id, req.body)
     .then((result)=>{
         res.json({link:'/'})
