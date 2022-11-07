@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const Pods = require('./models/pods')
+const podRoutes = require('./routes/podRoutes')
 
 const bodyParser = require('body-parser');
 
@@ -18,38 +19,13 @@ mongoose.connect(process.env.DB_URL, ()=>{
 
 
 
-app.get('/', async (req,res)=>{
-    const pods = await Pods.find().sort({updatedAt:-1})
-    pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
-    : res.redirect('addPod')
-    
-    
-})
-
-app.get('/podTake/:id', (req,res)=>{
-    const id = req.params.id
-    Pods.findById(id)
-    .then((result)=>{
-        res.render('podTake', {header:'Pod Detay', pod:result})
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-
+app.get('/', (req,res)=>{
+    res.redirect('pod')    
 })
 
 
-app.get('/podPut/:id', (req,res)=>{
-    const id = req.params.id
-    Pods.findById(id)
-    .then((result)=>{
-        res.render('podPut', {header:'Pod Detay', pod:result})
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+app.use('/pod', podRoutes)
 
-})
 
 
 app.get('/addPod', (req,res)=>{
@@ -68,19 +44,5 @@ app.post('/addPod', (req,res)=>{
         .then(res.redirect('/'))
         .catch((err)=>{console.log(err)})
     
-
-})
-
-
-
-app.post('/pod/update/:id', (req,res)=>{
-    const id = req.params.id
-
-    console.log(req.body);
-
-    Pods.findByIdAndUpdate(id, req.body)
-    .then((result)=>{
-        res.json({link:'/'})
-    })
 })
 

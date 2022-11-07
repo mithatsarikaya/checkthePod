@@ -15,8 +15,6 @@
             <th>Toplam</th>
             <th>Ürün(raw)</th>
             <th>İşlem</th>
-            <!-- <th>İstenen Miktar(raw)</th>
-            <th>Tartıda Yazacak</th> -->
           </tr>
           <% pods.forEach(pod => { %>
           <tr class="lightOnHover">
@@ -26,14 +24,14 @@
             <td><%=pod.productRawAmount%></td>
             <td>
               <button
-                onclick="window.location='/podTake/<%=pod._id%>';"
+                onclick="window.location='/pod/Take/<%=pod._id%>';"
                 class="btnAddAndTake"
                 id="btnTake"
               >
                 Al
               </button>
               <button
-                onclick="window.location='/podPut/<%=pod._id%>';"
+                onclick="window.location='/pod/Put/<%=pod._id%>';"
                 class="btnAddAndTake"
                 id="btnAdd"
               >
