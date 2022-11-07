@@ -34,20 +34,26 @@ const podPutGet = (req,res)=>{
 const podUpdatePost = async (req,res)=>{
    const id = req.params.id
    
-   const podToBeUpdated = await Pods.findById(id)
+   console.log(req.body);
 
-   console.log(typeof podToBeUpdated);
-   console.log(podToBeUpdated.productRawAmount);
+   if (req.body.productRawAmount < 0 || req.body.productRawAmount === null){
+      console.log('kayıt başarısız');
+      // res.json({link:'/'})
+   }else{
+      Pods.findByIdAndUpdate(id, req.body)
+      .then(()=>{
+      res.json({link:'/'})
+   })
+   }
 
    // console.log(req.body.productRawAmount);
    // console.log(req.body);
 
-   
+   // const podToBeUpdated = await Pods.findById(id)
+   // console.log(typeof podToBeUpdated.productRawAmount);
+   // console.log(typeof req.body.productRawAmount);
 
-   Pods.findByIdAndUpdate(id, req.body)
-   .then(()=>{
-       res.json({link:'/'})
-   })
+   
 }
 
  module.exports = {

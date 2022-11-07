@@ -8,32 +8,46 @@
 
     <section>
       <div id="thing">
-        <table>
-          <tr>
-            <th>Kap Adı</th>
-            <th>Dara(gr)</th>
-            <th>Toplam</th>
-            <th>Ürün(raw)</th>
-          </tr>
-          <tr class="lightOnHover">
-            <td><%=pod.podName%></td>
-            <td><%=pod.podFreeWeight%></td>
-            <td>
-              <input class="full" autofocus type="number" id="totalWeight" />
-            </td>
-            <td>
-              <input class="full" autofocus type="number" id="rawWeight" />
-            </td>
-          </tr>
-        </table>
+        <form>
+          <table>
+            <tr>
+              <th>Kap Adı</th>
+              <th>Dara(gr)</th>
+              <th>Toplam</th>
+              <th>Ürün(raw)</th>
+            </tr>
+            <tr class="lightOnHover">
+              <td><%=pod.podName%></td>
+              <td><%=pod.podFreeWeight%></td>
+              <td>
+                <input
+                  class="full"
+                  autofocus
+                  type="number"
+                  id="totalWeight"
+                  required
+                />
+              </td>
+              <td>
+                <input
+                  class="full"
+                  autofocus
+                  type="number"
+                  id="rawWeight"
+                  required
+                />
+              </td>
+            </tr>
+          </table>
 
-        <button
-          class="calculatePageBtn"
-          id="putBtnTake"
-          data-doc="<%=pod._id%>"
-        >
-          Ürün Ekle
-        </button>
+          <button
+            class="calculatePageBtn"
+            id="putBtnTake"
+            data-doc="<%=pod._id%>"
+          >
+            Ürün Ekle
+          </button>
+        </form>
       </div>
     </section>
 
@@ -62,8 +76,21 @@
           podTotalWeight: totalWeight,
         };
 
-        console.log(data);
-        console.log(data.productRawAmount, data.podFreeWeight);
+        var inputTotal = parseInt(document.querySelector("#totalWeight").value);
+
+        // alert(inputTotal);
+        console.log("hey" + inputTotal);
+
+        if (!inputTotal) {
+          console.log("look here");
+        }
+
+        if (parseInt(document.querySelector("#totalWeight").value) === NaN) {
+          alert("Hem Toplam hem de Ürün hücreleri doldurulmalıdır");
+        }
+
+        // console.log(data);
+        // console.log(data.productRawAmount, data.podFreeWeight);
 
         fetch(endpoint, {
           method: "POST",
@@ -81,3 +108,5 @@
     </script>
   </body>
 </html>
+
+<!-- || parseInt(document.querySelector("#rawWeight").value) === NaN -->

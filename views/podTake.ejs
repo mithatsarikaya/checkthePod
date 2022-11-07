@@ -28,6 +28,7 @@
                 autofocus
                 type="number"
                 id="requestedRawAmount"
+                required
               />
             </td>
             <td>
@@ -51,22 +52,29 @@
       const podFreeWeight = parseInt("<%=pod.podFreeWeight%>");
       const podTotalWeight = parseInt("<%=pod.podTotalWeight%>");
       const productRawAmount = parseInt("<%=pod.productRawAmount%>");
-
+      const saveBtnTake = document.querySelector("#saveBtnTake");
+      saveBtnTake.disabled = true;
       const calculateBtn = document.querySelector("#calculateBtn");
       calculateBtn.addEventListener("click", (e) => {
         const requestedRawAmount = document.querySelector(
           "#requestedRawAmount"
         ).value;
 
-        const finalResult =
-          podTotalWeight -
-          ((podTotalWeight - podFreeWeight) / productRawAmount) *
-            requestedRawAmount;
+        if (requestedRawAmount > productRawAmount) {
+          alert("Talep aşımında bulunduz, gözden geçiriniz.");
+        } else {
+          requestedRawAmount > 0
+            ? (saveBtnTake.disabled = false)
+            : (saveBtnTake.disabled = true);
+          const finalResult =
+            podTotalWeight -
+            ((podTotalWeight - podFreeWeight) / productRawAmount) *
+              requestedRawAmount;
 
-        document.querySelector("#result").innerHTML = finalResult;
+          document.querySelector("#result").innerHTML = finalResult;
+        }
       });
 
-      const saveBtnTake = document.querySelector("#saveBtnTake");
       saveBtnTake.addEventListener("click", (e) => {
         const endpoint = `/pod/update/${saveBtnTake.dataset.doc}`;
 

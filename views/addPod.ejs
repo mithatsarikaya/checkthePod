@@ -14,12 +14,15 @@
             type="text"
             name="podName"
             placeholder="Kap Adı Giriniz"
+            required
           />
+
           <input
             class="required"
             type="number"
             name="podFreeWeight"
             placeholder="Kap Darası Giriniz"
+            required
           />
           <input
             type="number"
@@ -40,5 +43,12 @@
         </form>
       </div>
     </section>
+    <!-- <script>
+      const requiredInputs = document.querySelectorAll(".required");
+
+      window.addEventListener("click", function (e) {
+        console.log(requiredInputs[0].value);
+      });
+    </script> -->
   </body>
 </html>

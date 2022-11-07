@@ -5,17 +5,18 @@
 
 body{
     margin: 10px auto;
-    width: 80%;
+    width: 100%;
 }
 
 section{
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     border-bottom: 3px black solid;
+    margin: auto 20px;
 }
 
 a {
@@ -29,7 +30,7 @@ ul {
 }
 
 ul li {
-    margin-right: 50px;
+    margin-left: 50px;
     list-style: none;
     border-radius: 5px;
 }
@@ -42,7 +43,7 @@ ul li:hover, a:hover{
 
 #thing{
     /* background-color: aqua; */
-    width: 80%;
+    width: 90%;
     height: 400px;
     margin: 0 auto;
     
@@ -62,6 +63,7 @@ table,tr,th,td {
 
 form {
     margin : auto auto;
+    height: 100%;
 }
 
 input{
