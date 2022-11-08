@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('./inc/head')%>
+  </head>
+  <body>
+    <%-include('./inc/nav')%>
+
+    <section>
+      <div id="thing">
+        <form action="/login/post" method="post">
+          <input type="text" name="username" placeholder="username" />
+          <input type="password" name="password" placeholder="password" />
+          <input type="submit" value="Giriş" />
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

@@ -2,7 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const Pods = require('./models/pods')
+const cookieParser = require('cookie-parser')
 const podRoutes = require('./routes/podRoutes')
+const userRoutes = require('./routes/userRoutes')
+const {requireAuth, checkUser} = require('./middlewares/authMiddleware')
+
 
 const bodyParser = require('body-parser');
 
@@ -17,15 +21,18 @@ mongoose.connect(process.env.DB_URL, ()=>{
     app.listen(process.env.PORT, console.log(`server works on http://localhost:${process.env.PORT}`))
 })
 
+app.use(cookieParser())
 
+app.get('*',checkUser)
 
 app.get('/', (req,res)=>{
+    console.log(req);
     res.redirect('pod')    
 })
 
 
 app.use('/pod', podRoutes)
-
+app.use('/login',userRoutes)
 
 
 app.get('/addDeletePod', (req,res)=>{

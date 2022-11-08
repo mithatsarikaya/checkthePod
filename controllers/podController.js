@@ -5,6 +5,7 @@ const podsIndex = async (req,res)=>{
     const pods = await Pods.find().sort({updatedAt:-1})
     pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
     : res.redirect('addDeletePod')
+    
  }
 
  const podTakeGet = (req,res)=>{
