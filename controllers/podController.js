@@ -4,7 +4,7 @@ const Pods = require('../models/pods')
 const podsIndex = async (req,res)=>{
     const pods = await Pods.find().sort({updatedAt:-1})
     pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
-    : res.redirect('addPod')
+    : res.redirect('addDeletePod')
  }
 
  const podTakeGet = (req,res)=>{
@@ -36,7 +36,8 @@ const podUpdatePost = async (req,res)=>{
    
    console.log(req.body);
 
-   if (req.body.productRawAmount < 0 || req.body.productRawAmount === null){
+   if ((req.body.productRawAmount < 0 || req.body.productRawAmount === null) &&
+    (req.body.podTotalWeight < 0 || req.body.podTotalWeight === null)){
       console.log('kayıt başarısız');
       // res.json({link:'/'})
    }else{
@@ -56,9 +57,22 @@ const podUpdatePost = async (req,res)=>{
    
 }
 
+const podDelete = async (req,res)=>{
+   console.log(req.body);
+   const id = req.params.id
+   await Pods.findByIdAndDelete(id)
+      .then(() => {
+      res.json({link:'/addPod'})
+  })
+      .catch((err) => {
+      console.log(err);
+  })
+}
+
  module.exports = {
     podsIndex,
     podTakeGet,
     podPutGet,
-    podUpdatePost
+    podUpdatePost,
+    podDelete
  }

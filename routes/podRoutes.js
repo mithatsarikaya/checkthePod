@@ -6,6 +6,7 @@ router.get('/', podController.podsIndex)
 router.get('/Take/:id', podController.podTakeGet)
 router.get('/Put/:id', podController.podPutGet)
 router.post('/update/:id', podController.podUpdatePost)
+router.delete('/Delete/:id', podController.podDelete)
 
 
 

@@ -29,7 +29,10 @@ app.use('/pod', podRoutes)
 
 
 app.get('/addPod', (req,res)=>{
-    res.render('addPod', {header: 'Kap Ekle'})
+    Pods.find()
+        .then((result) => {
+            res.render('addDeletePod', {header: 'Kap Ekle', pods: result})
+        })
 })
 
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('./inc/head')%>
+  </head>
+  <body>
+    <%-include('./inc/nav')%>
+
+    <section>
+      <div id="thing">
+        <form action="" method="post">
+          <input
+            class="required"
+            type="text"
+            name="podName"
+            placeholder="Kap Adı Giriniz"
+            required
+          />
+
+          <input
+            class="required"
+            type="number"
+            name="podFreeWeight"
+            placeholder="Kap Darası Giriniz"
+            required
+          />
+          <input
+            type="number"
+            name="podTotalWeight"
+            placeholder="Kap Total Ağırlık Giriniz"
+          />
+          <input
+            type="number"
+            name="productRawAmount"
+            placeholder="Ham Ürün Miktarı Giriniz"
+          />
+          <input
+            type="number"
+            name="productRawAmountRequested"
+            placeholder="Ham İstenilen Ürün Miktarı Giriniz"
+          />
+          <input type="submit" value="Gonder" />
+        </form>
+
+        <table>
+          <tr>
+            <th>Kap Adı</th>
+            <th>Dara(gr)</th>
+            <th>Toplam</th>
+            <th>Ürün(raw)</th>
+            <th>İşlem</th>
+          </tr>
+          <% pods.forEach(pod => { %>
+          <tr class="lightOnHover">
+            <td><%=pod.podName%></td>
+            <td><%=pod.podFreeWeight%></td>
+            <td><%=pod.podTotalWeight%></td>
+            <td><%=pod.productRawAmount%></td>
+            <td>
+              <button
+                class="btnAddAndTake"
+                id="btnDelete"
+                data-id="<%=pod._id%>"
+              >
+                Sil
+              </button>
+            </td>
+          </tr>
+
+          <% }) %>
+        </table>
+      </div>
+    </section>
+
+    <script>
+      const btnsDelete = document.querySelectorAll("#btnDelete");
+      console.log(btnsDelete);
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const endpoint = `/pod/Delete/${btn.dataset.id}`;
+          console.log(endpoint);
+          fetch(endpoint, { method: "DELETE" })
+            .then((reponse) => response.json())
+            .then(location.reload())
+            .catch((err) => {});
+        });
+      });
+    </script>
+  </body>
+</html>
