@@ -28,7 +28,7 @@ app.use('/pod', podRoutes)
 
 
 
-app.get('/addPod', (req,res)=>{
+app.get('/addDeletePod', (req,res)=>{
     Pods.find()
         .then((result) => {
             res.render('addDeletePod', {header: 'Kap Ekle', pods: result})
@@ -36,7 +36,7 @@ app.get('/addPod', (req,res)=>{
 })
 
 
-app.post('/addPod', (req,res)=>{
+app.post('/addDeletePod', (req,res)=>{
     const pod = new Pods(req.body)
 
     if (pod.podTotalWeight < pod.podFreeWeight || pod.podTotalWeight === null)

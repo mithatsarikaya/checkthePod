@@ -42,7 +42,7 @@ ul li:hover, a:hover{
 
 
 #thing{
-    /* background-color: aqua; */
+    
     width: 90%;
     height: 400px;
     margin: 0 auto;
@@ -68,16 +68,15 @@ form {
 
 input{
     display: block;
+    margin: auto;
+    width: 60%;
 }
 
 .required {
     background-color: lightcoral;
 }
 
-/* .lightOnHover:hover {
-    background-color: lightcoral;
-    
-} */
+
 
 tr:hover td {
     background-color: lightcoral;
@@ -107,4 +106,17 @@ tr:hover td {
 .btnAddAndTake:hover{
     border: solid black 3px;
     cursor: pointer;
+}
+
+#formAddDeletePod {
+    height: auto;
+    margin: auto auto;
+}
+
+#formAddDeletePod  {
+    align-items: center;
+}
+
+#tableAddDeletePod {
+    margin: 20px auto;
 }
