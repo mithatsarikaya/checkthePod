@@ -61,10 +61,13 @@
         const podTotalWeight = parseInt("<%=pod.podTotalWeight%>");
         const productRawAmount = parseInt("<%=pod.productRawAmount%>");
 
-        const totalWeight = podTotalWeight
-          ? parseInt(document.querySelector("#totalWeight").value) +
-            parseInt(podTotalWeight)
-          : parseInt(document.querySelector("#totalWeight").value);
+        const totalWeight = parseInt(
+          document.querySelector("#totalWeight").value
+        );
+        // podTotalWeight
+        //   ? parseInt(document.querySelector("#totalWeight").value) +
+        //     parseInt(podTotalWeight)
+        //   : parseInt(document.querySelector("#totalWeight").value);
 
         const newProductRawAmount = productRawAmount
           ? parseInt(document.querySelector("#rawWeight").value) +

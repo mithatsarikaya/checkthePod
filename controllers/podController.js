@@ -3,10 +3,17 @@ const Pods = require('../models/pods')
 
 const podsIndex = async (req,res)=>{
     const pods = await Pods.find().sort({updatedAt:-1})
-    pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
-    : res.redirect('addDeletePod')
-    
- }
+    const token = req.cookies.jwt
+    if(token || pods.length !== 0){
+        res.render('index', {header: 'Ana Sayfa', pods: pods}) 
+    }
+    else{
+      res.redirect('login')
+    }
+
+    /* pods.length !== 0 ? res.render('index', {header: 'Ana Sayfa', pods: pods}) 
+    : res.redirect('addDeletePod') */
+}
 
  const podTakeGet = (req,res)=>{
    const id = req.params.id
@@ -36,7 +43,6 @@ const podUpdatePost = async (req,res)=>{
    const id = req.params.id
    
    console.log(req.body);
-
    if ((req.body.productRawAmount < 0 || req.body.productRawAmount === null) ||
     (req.body.podTotalWeight < 0 || req.body.podTotalWeight === null)){
       console.log('kayıt başarısız');

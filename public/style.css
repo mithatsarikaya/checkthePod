@@ -16,7 +16,7 @@ nav {
     display: flex;
     justify-content: space-between;
     border-bottom: 3px black solid;
-    margin: auto 20px;
+    margin: auto 50px;
 }
 
 a {
