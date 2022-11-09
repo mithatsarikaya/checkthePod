@@ -11,13 +11,6 @@ const loginIndex = (req,res) => {
     res.render('login', {header:"login"})
 }
 
-const userAddPost = (req,res) => {
-    console.log(req.body);
-    new Users(req.body).save()
-        .then((result)=>res.json(result))
-}
-
-
 const loginPost = async (req,res) =>{
     const {username, password} = req.body
     try{
@@ -28,6 +21,7 @@ const loginPost = async (req,res) =>{
     }
     catch(e){
         console.log(e);
+        res.redirect('/')
     }
 }
 
@@ -37,8 +31,27 @@ const logoutGet = (req,res) =>{
 }
 
 
+const userAddPost = (req,res) => {
+    console.log(req.body);
+    new Users(req.body).save()
+        .then(res.redirect('/'))
+        .catch((err) => {
+            console.log('giris hatasi')
+            res.redirect('/login');
+        })
+}
+
+const userAddGet = (req,res) => {
+    res.render('signin', {header:"Kayit"})
+}
+
+
+
+
+
 module.exports ={
     userAddPost,
+    userAddGet,
     loginIndex,
     loginPost,
     logoutGet

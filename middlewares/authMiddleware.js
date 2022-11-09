@@ -3,14 +3,14 @@ const User = require('../models/users');
 
 const requireAuth = (req,res,next) => {
     const token = req.cookies.jwt
-
+    
     if (token) {
         jwt.verify(token, process.env.SECRET_KEY, (err, decodedToken)=>{
             if (err) {
                 console.log(err);
                 res.redirect('/')
             }else{
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 next()
             }
         })
@@ -27,7 +27,7 @@ const checkUser = (req,res,next) => {
                 console.log(err);
                 res.locals.user = null
             }else{
-                console.log(decodedToken);
+                // console.log(decodedToken);
                 let user = await User.findById(decodedToken.id)
                 res.locals.user = user
                 next()
