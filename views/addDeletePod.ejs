@@ -47,7 +47,7 @@
             <th>Kap Adı</th>
             <th>Dara(gr)</th>
             <th>Toplam</th>
-            <th>Ürün(raw)</th>
+            <th>Ürün (raw)</th>
             <th>İşlem</th>
           </tr>
           <% pods.forEach(pod => { %>
@@ -56,14 +56,8 @@
             <td><%=pod.podFreeWeight%></td>
             <td><%=pod.podTotalWeight%></td>
             <td><%=pod.productRawAmount%></td>
-            <td>
-              <button
-                class="btnAddAndTake"
-                id="btnDelete"
-                data-id="<%=pod._id%>"
-              >
-                Sil
-              </button>
+            <td id="hasButtons">
+              <button class="btnAddAndTake" data-id="<%=pod._id%>">Sil</button>
             </td>
           </tr>
 

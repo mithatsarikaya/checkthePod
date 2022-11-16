@@ -5,10 +5,26 @@
 
 nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content:space-evenly;
     border-bottom: 3px black solid;
+    width:max-content;
     margin: auto auto;
 }
+
+nav ul {
+    display: flex;
+    
+}
+
+
+
+ul li {
+    margin-left: 20px;
+    list-style: none;
+    background-color: white;
+}
+
 
 
 #hasButtons {
@@ -24,4 +40,8 @@ nav {
   height: 100%;
   cursor: pointer;
   text-align: center;
+}
+
+table { 
+    table-layout:fixed;
 }

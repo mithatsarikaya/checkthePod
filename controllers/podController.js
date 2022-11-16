@@ -54,6 +54,26 @@ const podUpdatePost = async (req,res)=>{
    }
 }
 
+
+const podResetGet = async (req,res)=>{
+    const id = req.params.id
+    
+    if ((req.body.productRawAmount < 0 || req.body.productRawAmount === null) ||
+     (req.body.podTotalWeight < 0 || req.body.podTotalWeight === null)){
+       console.log('kayıt başarısız');
+    }else{
+       Pods.findByIdAndUpdate(id, {
+        productRawAmount : 0,
+        podTotalWeight : 0
+       })
+       .then(()=>{
+       res.redirect('/')
+    })
+    }
+ }
+ 
+
+
 const podDelete = async (req,res)=>{
    console.log(req.body);
    const id = req.params.id
@@ -71,5 +91,6 @@ const podDelete = async (req,res)=>{
     podTakeGet,
     podPutGet,
     podUpdatePost,
+    podResetGet,
     podDelete
  }
