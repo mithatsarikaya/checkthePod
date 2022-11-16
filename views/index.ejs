@@ -19,9 +19,15 @@
           <% pods.forEach(pod => { %>
           <tr class="lightOnHover">
             <td><%=pod.podName%></td>
-            <td><%=pod.podFreeWeight%></td>
-            <td><%=pod.podTotalWeight%></td>
-            <td><%=pod.productRawAmount%></td>
+            <td>
+              <%= (Math.round(pod.podFreeWeight * 100) / 100).toFixed(1) %>
+            </td>
+            <td>
+              <%= (Math.round(pod.podTotalWeight * 100) / 100).toFixed(1) %>
+            </td>
+            <td>
+              <%= (Math.round(pod.productRawAmount * 100) / 100).toFixed(1) %>
+            </td>
             <td id="hasButtons">
               <button
                 onclick="window.location='/pod/Take/<%=pod._id%>';"
