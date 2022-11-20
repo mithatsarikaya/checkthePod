@@ -71,7 +71,9 @@
             ((podTotalWeight - podFreeWeight) / productRawAmount) *
               requestedRawAmount;
 
-          document.querySelector("#result").innerHTML = finalResult;
+          document.querySelector("#result").innerHTML = (
+            Math.round(finalResult * 100) / 100
+          ).toFixed(1);
         }
       });
 
@@ -89,7 +91,7 @@
 
         let data = {
           productRawAmount: productRawAmount - requestedRawAmount,
-          podTotalWeight: finalResult,
+          podTotalWeight: (Math.round(finalResult * 100) / 100).toFixed(1),
         };
 
         console.log(finalResult);

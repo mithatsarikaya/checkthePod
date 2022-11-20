@@ -14,13 +14,12 @@ nav {
 
 nav ul {
     display: flex;
-    
 }
 
 
 
 ul li {
-    margin-left: 20px;
+    margin-left: 10px;
     list-style: none;
     background-color: white;
 }
