@@ -14,9 +14,9 @@ section{
 
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     border-bottom: 3px black solid;
-    margin: auto 50px;
+    margin: auto auto;
 }
 
 a {
@@ -27,10 +27,11 @@ a {
 ul {
     display: flex;
     align-items: center;
+    width: 50%;
+    justify-content: space-around;
 }
 
 ul li {
-    margin-left: 50px;
     list-style: none;
     border-radius: 5px;
 }
