@@ -42,7 +42,6 @@ const podPutGet = (req,res)=>{
 const podUpdatePost = async (req,res)=>{
    const id = req.params.id
    
-   console.log(req.body);
    if ((req.body.productRawAmount < 0 || req.body.productRawAmount === null) ||
     (req.body.podTotalWeight < 0 || req.body.podTotalWeight === null)){
       console.log('kayıt başarısız');
@@ -75,7 +74,6 @@ const podResetGet = async (req,res)=>{
 
 
 const podDelete = async (req,res)=>{
-   console.log(req.body);
    const id = req.params.id
    await Pods.findByIdAndDelete(id)
       .then(() => {

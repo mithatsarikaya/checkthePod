@@ -12,7 +12,8 @@ const loginIndex = (req,res) => {
 }
 
 const loginPost = async (req,res) =>{
-    const {username, password} = req.body
+    const username = req.body.username.trim()
+    const password = req.body.password
     try{
         const user = await Users.login(username,password)
         const token = createToken(user._id)
@@ -32,7 +33,6 @@ const logoutGet = (req,res) =>{
 
 
 const userAddPost = (req,res) => {
-    console.log(req.body);
     new Users(req.body).save()
         .then(res.redirect('/'))
         .catch((err) => {
