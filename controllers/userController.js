@@ -33,10 +33,13 @@ const logoutGet = (req,res) =>{
 
 
 const userAddPost = (req,res) => {
-    new Users(req.body).save()
+    const username = req.body.username.trim()
+    const password = req.body.password
+
+    new Users({username,password}).save()
         .then(res.redirect('/'))
         .catch((err) => {
-            console.log('giris hatasi')
+            console.log('kullanici kaydedilemedi')
             res.redirect('/login');
         })
 }
