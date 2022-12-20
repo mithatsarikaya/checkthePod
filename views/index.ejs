@@ -7,97 +7,121 @@
     <%-include('./inc/nav')%>
 
     <section>
-      <div id="thing">
-        <table>
-          <tr>
-            <th>Kap Adı</th>
-            <th>Dara (gr)</th>
-            <th>Toplam</th>
-            <th>Ürün (raw)</th>
-            <th>İşlem</th>
-          </tr>
-          <% pods.forEach(pod => { %>
-          <tr class="lightOnHover">
-            <td><%=pod.podName%></td>
-            <td>
-              <%= (Math.round(pod.podFreeWeight * 100) / 100).toFixed(1) %>
-            </td>
-            <td>
-              <%= (Math.round(pod.podTotalWeight * 100) / 100).toFixed(1) %>
-            </td>
-            <td>
-              <%= (Math.round(pod.productRawAmount * 100) / 100).toFixed(1) %>
-            </td>
-            <td id="hasButtons">
-              <button
-                onclick="window.location='/pod/Take/<%=pod._id%>';"
-                class="btnAddAndTake"
-                id="btnTake"
+      <div class="podIndex">
+        <% pods.forEach(pod => { %>
+        <div class="pod">
+          <div class="podName podProperty">
+            <div>
+              <b>Kap Adı</b>
+            </div>
+            <div>
+              <b><%=pod.podName%></b>
+            </div>
+          </div>
+          <div class="podFreeWeight podProperty">
+            <div><b>Dara (gr)</b></div>
+            <div>
+              <b
+                ><%= (Math.round(pod.podFreeWeight * 100) / 100).toFixed(1)
+                %></b
               >
-                Al
-              </button>
-              <button
-                onclick="window.location='/pod/Put/<%=pod._id%>';"
-                class="btnAddAndTake"
-                id="btnAdd"
+            </div>
+          </div>
+          <div class="podTotalWeight podProperty">
+            <div><b>Toplam</b></div>
+            <div>
+              <b
+                ><%= (Math.round(pod.podTotalWeight * 100) / 100).toFixed(1)
+                %></b
               >
-                Ekle
-              </button>
-              <button
-                onclick="window.location='/pod/Reset/<%=pod._id%>';"
-                class="btnAddAndTake"
-                id="btnAdd"
+            </div>
+          </div>
+          <div class="productRawAmount podProperty">
+            <div><b>Ürün(raw)</b></div>
+            <div>
+              <b
+                ><%= (Math.round(pod.productRawAmount * 100) /
+                100).toFixed(1)%></b
               >
-                Reset
-              </button>
-            </td>
-          </tr>
-
-          <% }) %>
-        </table>
+            </div>
+          </div>
+          <div id="podIndexButtons">
+            <button
+              onclick="window.location='/pod/Take/<%=pod._id%>';"
+              class="btnAddAndTake"
+              id="btnTake"
+            >
+              Al
+            </button>
+            <button
+              onclick="window.location='/pod/Put/<%=pod._id%>';"
+              class="btnAddAndTake"
+              id="btnAdd"
+            >
+              Ekle
+            </button>
+            <button
+              onclick="window.location='/pod/Reset/<%=pod._id%>';"
+              class="btnAddAndTake"
+              id="btnAdd"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+        <% }) %>
       </div>
     </section>
   </body>
 </html>
 
 <!-- 
-<table>
-  <tr>
-    <th>Kap Adı</th>
-    <th>Dara(gr)</th>
-    <th>Toplam</th>
-    <th>Ürün(raw)</th>
-    <th>İşlem</th>
-  </tr>
-  <% pods.forEach(pod => { %>
-  <tr class="lightOnHover">
-    <td><%=pod.podName%></td>
-    <td>
-      <%= (Math.round(pod.podFreeWeight * 100) / 100).toFixed(1) %>
-    </td>
-    <td>
-      <%= (Math.round(pod.podTotalWeight * 100) / 100).toFixed(1) %>
-    </td>
-    <td>
-      <%= (Math.round(pod.productRawAmount * 100) / 100).toFixed(1) %>
-    </td>
-    <td id="hasButtons">
-      <button
-        onclick="window.location='/pod/Take/<%=pod._id%>';"
-        class="btnAddAndTake"
-        id="btnTake"
-      >
-        Al
-      </button>
-      <button
-        onclick="window.location='/pod/Put/<%=pod._id%>';"
-        class="btnAddAndTake"
-        id="btnAdd"
-      >
-        Ekle
-      </button>
-    </td>
-  </tr>
+<div id="thing">
+  <table>
+    <tr>
+      <th>Kap Adı</th>
+      <th>Dara (gr)</th>
+      <th>Toplam</th>
+      <th>Ürün (raw)</th>
+      <th>İşlem</th>
+    </tr>
+    <% pods.forEach(pod => { %>
+    <tr class="lightOnHover">
+      <td><%=pod.podName%></td>
+      <td>
+        <%= (Math.round(pod.podFreeWeight * 100) / 100).toFixed(1) %>
+      </td>
+      <td>
+        <%= (Math.round(pod.podTotalWeight * 100) / 100).toFixed(1) %>
+      </td>
+      <td>
+        <%= (Math.round(pod.productRawAmount * 100) / 100).toFixed(1) %>
+      </td>
+      <td id="hasButtons">
+        <button
+          onclick="window.location='/pod/Take/<%=pod._id%>';"
+          class="btnAddAndTake"
+          id="btnTake"
+        >
+          Al
+        </button>
+        <button
+          onclick="window.location='/pod/Put/<%=pod._id%>';"
+          class="btnAddAndTake"
+          id="btnAdd"
+        >
+          Ekle
+        </button>
+        <button
+          onclick="window.location='/pod/Reset/<%=pod._id%>';"
+          class="btnAddAndTake"
+          id="btnAdd"
+        >
+          Reset
+        </button>
+      </td>
+    </tr>
 
-  <% }) %>
-</table> -->
+    <% }) %>
+  </table>
+</div> -->

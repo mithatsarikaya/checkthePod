@@ -1,6 +1,8 @@
 * {
     background-color:gainsboro;
-    font-size: small;
+    font-size: medium;
+    margin: 0px;
+    padding: 0px;
 }
 
 nav {
@@ -12,11 +14,16 @@ nav {
     margin: auto auto;
 }
 
+nav h1 ,nav h2{
+    text-align: center;
+}
+
 nav ul {
     display: flex;
     justify-content: space-around;
     width: 100%;
     padding-inline-start:0;
+    margin-top: 10px;
 }
 
 
@@ -36,7 +43,13 @@ ul li a {
     justify-content: space-around;
     text-align: center;
     border-radius: 40%;
+    font-size: 20px;
 }
+
+section{
+    width: 100%;
+}
+
 
 
 
@@ -57,4 +70,50 @@ ul li a {
 
 table { 
     table-layout:fixed;
+}
+
+#thing{
+    width: 100%;
+}
+
+.podIndex{
+    height: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.pod{
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pod b {
+    font-size: 28px;
+}
+
+.podProperty {
+    display: flex;
+    justify-content:space-between;
+}
+
+.podProperty div{
+    width: 100%;
+    border: 1px solid;
+    text-align: center;
+}
+
+#podIndexButtons{
+    display: flex;
+}
+
+#podIndexButtons button{
+    height: 50px;
+    font-size: 20px;
+}
+
+.podTotalWeight div b{
+    background-color: greenyellow;
 }
